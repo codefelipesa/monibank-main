@@ -3,14 +3,12 @@ const erroCpf = document.querySelector("[data-erro-cpf]")
 export default function verificacaoDoCpf(campo) {
     const cpf = campo.value.replace(/\.|-/g, "") // Retira os caracteres especiais do CPF
     if(verificaNumerosRepetidos(cpf)||validaPrimeiroDigitoCpf(cpf)||validaSegundoDigitoCpf(cpf)){
-        erroCpf.innerHTML = "Por favor insira um CPF válido"
-
-        console.log("Por favor insira um CPF válido")
-    }else {
-        erroCpf.innerHTML = ""
-    }
+        campo.setCustomValidity('Esse cpf não é válido')
+    
+}   else{
+    campo.setCustomValidity('')
 }
-
+}
 
 // export default function verificaNumerosRepetidos (cpf) {
 //     const verificacao =  cpf.split("").every((numero) => numero === cpf.split("")[0])
@@ -51,7 +49,6 @@ function validaPrimeiroDigitoCpf(cpf) {
     if(soma == 10 || soma == 11){
         soma= 0
     }
-    console.log(soma!= cpf[9])
     return soma != cpf[9]
 
 }
@@ -71,7 +68,6 @@ function validaSegundoDigitoCpf(cpf) {
     if(soma == 10 || soma == 11){
         soma= 0
     }
-    console.log(soma!= cpf[10])
     return soma != cpf[10]
 
 }
